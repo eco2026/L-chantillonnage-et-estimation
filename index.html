@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Révision : Échantillonnage & Estimation</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .formula-box { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
+
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 text-center sm:text-left">
+            <h1 class="text-3xl font-extrabold tracking-tight">Dashboard de Révision Ultimate</h1>
+            <p class="mt-2 text-indigo-100 text-lg">Loi Normale, Échantillonnage, Estimation et Loi de Student</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-4 border-blue-600 pb-2 mb-6">I. Résumé Théorique du Cours</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="p-2 bg-blue-100 text-blue-700 rounded-lg text-xl font-bold">01</span>
+                        <h3 class="text-xl font-bold text-slate-800">La Loi Normale N(μ, σ)</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">Distribution symétrique en cloche. Pour calculer les probabilités de la table, on applique le centrage et la réduction :</p>
+                    <div class="formula-box p-4 rounded-xl text-center border border-slate-200 font-mono font-bold text-indigo-700 text-xl mb-4">
+                        Z = (X - μ) / σ
+                    </div>
+                    <h4 class="font-semibold text-sm uppercase tracking-wider text-slate-500 mb-2">Règles de lecture (Table Z) :</h4>
+                    <ul class="space-y-1.5 text-sm text-slate-600 font-mono">
+                        <li>• P(Z ≤ a) = Π(a)</li>
+                        <li>• P(Z ≥ a) = 1 - Π(a)</li>
+                        <li>• P(Z ≤ -a) = 1 - Π(a)</li>
+                        <li>• P(a ≤ Z ≤ b) = Π(b) - Π(a)</li>
+                        <li>• P(-a ≤ Z ≤ a) = 2Π(a) - 1</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="p-2 bg-indigo-100 text-indigo-700 rounded-lg text-xl font-bold">02</span>
+                        <h3 class="text-xl font-bold text-slate-800">L'Échantillonnage</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">Analyse des caractéristiques d'un échantillon de taille <i>n</i> extrait d'une population <i>N</i>.</p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-4 border-emerald-500 pl-3">
+                            <h4 class="font-bold text-slate-700">A. Tirage avec remise (ou Pop. infinie)</h4>
+                            <p class="text-slate-600">Écart-type de la moyenne : <span class="font-mono bg-slate-100 px-1 py-0.5 rounded">σ_X̄ = σ / √n</span></p>
+                            <p class="text-slate-600">Écart-type de la proportion : <span class="font-mono bg-slate-100 px-1 py-0.5 rounded">σ_f = √[p(1-p)/n]</span></p>
+                        </div>
+                        <div class="border-l-4 border-amber-500 pl-3">
+                            <h4 class="font-bold text-slate-700">B. Tirage sans remise (Pop. finie & n/N > 5%)</h4>
+                            <p class="text-slate-600 mb-1">On applique le facteur d'correction d'exhaustivité : <span class="font-mono bg-slate-100 px-1 py-0.5 rounded">√[(N-n)/(N-1)]</span></p>
+                            <p class="text-slate-600">Écart-type corrigé : <span class="font-mono bg-slate-100 px-1 py-0.5 rounded">σ_X̄_corr = (σ / √n) × √[(N-n)/(N-1)]</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="p-2 bg-emerald-100 text-emerald-700 rounded-lg text-xl font-bold">03</span>
+                        <h3 class="text-xl font-bold text-slate-800">L'Estimation & Intervalles de Confiance (IC)</h3>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-600 border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 uppercase tracking-wider text-xs border-b border-slate-200">
+                                    <th class="p-3">Paramètre</th>
+                                    <th class="p-3">Conditions</th>
+                                    <th class="p-3">Loi utilisée</th>
+                                    <th class="p-3">Formule de l'Intervalle de Confiance (IC)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-700">Moyenne μ</td>
+                                    <td class="p-3">σ connu</td>
+                                    <td class="p-3"><span class="px-2 py-1 bg-blue-50 text-blue-700 rounded font-semibold text-xs">Loi Normale (Z)</span></td>
+                                    <td class="p-3 font-mono text-indigo-700 font-semibold">[ X̄ ± z_<sub>1-α/2</sub> × (σ / √n) ]</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-700">Moyenne μ</td>
+                                    <td class="p-3">σ inconnu et n ≥ 30</td>
+                                    <td class="p-3"><span class="px-2 py-1 bg-blue-50 text-blue-700 rounded font-semibold text-xs">Loi Normale (Z)</span></td>
+                                    <td class="p-3 font-mono text-indigo-700 font-semibold">[ X̄ ± z_<sub>1-α/2</sub> × (s / √n) ] <span class="text-xs text-slate-400">(utiliser s)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-700">Moyenne μ</td>
+                                    <td class="p-3">σ inconnu et n < 30</td>
+                                    <td class="p-3"><span class="px-2 py-1 bg-purple-50 text-purple-700 rounded font-semibold text-xs">Loi de Student (T)</span></td>
+                                    <td class="p-3 font-mono text-indigo-700 font-semibold">[ X̄ ± t_<sub>1-α/2</sub> × (s / √n) ] <span class="text-xs text-slate-400">(ddl = n-1)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-700">Proportion p</td>
+                                    <td class="p-3">n ≥ 30, np ≥ 5</td>
+                                    <td class="p-3"><span class="px-2 py-1 bg-blue-50 text-blue-700 rounded font-semibold text-xs">Loi Normale (Z)</span></td>
+                                    <td class="p-3 font-mono text-indigo-700 font-semibold">[ f ± z_<sub>1-α/2</sub> × √[f(1-f)/n] ]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg text-xs text-amber-800">
+                        <strong>Rappel de la variance corrigée (s²) :</strong> Si la variance de l'échantillon donnée est biaisée, rectifiez-la par la formule : <span class="font-mono bg-amber-100 px-1 py-0.5 rounded font-bold">s² = [n / (n-1)] × σ²_éch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-bold text-slate-900 border-b-4 border-indigo-600 pb-2 mb-6">II. Banque d'Exercices d'Examen Corrigés</h2>
+            
+            <div class="space-y-8">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center">
+                        <h3 class="font-bold text-lg">Exercice 1 : Échantillonnage sans remise</h3>
+                        <span class="px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded">Intermédiaire</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4 bg-slate-50 p-4 rounded-lg border-l-4 border-slate-400 text-sm italic">
+                            Dans une entreprise de N = 500 employés, la taille suit une loi normale avec μ = 172 cm et σ = 8 cm. On prélève sans remise un échantillon de n = 100 employés. <br>
+                            1. Faut-il utiliser le facteur de correction ? Justifier. <br>
+                            2. Calculer la probabilité que la moyenne X̄ de l'échantillon soit comprise entre 171 cm et 173 cm. (Donnée : Π(1.40) = 0.9192)
+                        </div>
+                        <details class="group border border-slate-200 rounded-lg">
+                            <summary class="w-full text-left font-semibold text-sm p-3 bg-slate-100 hover:bg-slate-200 cursor-pointer text-indigo-700 flex justify-between items-center">
+                                <span>Afficher la Solution Détaillée</span>
+                                <span class="transition group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 text-sm text-slate-700 space-y-3 font-mono leading-relaxed bg-white">
+                                <p><strong>1. Vérification du taux de sondage :</strong><br>
+                                n/N = 100/500 = 0.20 (soit 20%). Puisque 20% > 5%, le facteur de correction est <strong>obligatoire</strong>.</p>
+                                <p><strong>2. Calcul de l'écart-type de la moyenne (corrigé) :</strong><br>
+                                σ_X̄ = (σ / √n) × √[(N-n)/(N-1)] = (8 / √100) × √[(500-100)/(500-1)]<br>
+                                σ_X̄ = 0.8 × √[400/499] = 0.8 × 0.895 = <strong>0.716</strong></p>
+                                <p><strong>3. Changement de variable vers Z :</strong><br>
+                                Z1 = (171 - 172) / 0.716 = -1.40<br>
+                                Z2 = (173 - 172) / 0.716 = +1.40</p>
+                                <p><strong>4. Calcul de la Probabilité :</strong><br>
+                                P(-1.40 ≤ Z ≤ 1.40) = 2Π(1.40) - 1 = 2(0.9192) - 1 = 1.8384 - 1 = <strong>0.8384 (soit 83.84%)</strong></p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center">
+                        <h3 class="font-bold text-lg">Exercice 2 : Intervalle de Confiance d'une Proportion</h3>
+                        <span class="px-2 py-1 bg-green-500 text-white text-xs font-bold rounded">Facile</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4 bg-slate-50 p-4 rounded-lg border-l-4 border-slate-400 text-sm italic">
+                            Un sondage sur n = 400 électeurs montre que 240 d'entre eux ont l'intention de voter pour le candidat A.<br>
+                            1. Donner l'estimation ponctuelle de la proportion p de la population.<br>
+                            2. Déterminer l'intervalle de confiance de p au niveau de confiance de 95% (z_<sub>0.975</sub> = 1.96).
+                        </div>
+                        <details class="group border border-slate-200 rounded-lg">
+                            <summary class="w-full text-left font-semibold text-sm p-3 bg-slate-100 hover:bg-slate-200 cursor-pointer text-indigo-700 flex justify-between items-center">
+                                <span>Afficher la Solution Détaillée</span>
+                                <span class="transition group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 text-sm text-slate-700 space-y-3 font-mono leading-relaxed bg-white">
+                                <p><strong>1. Estimation ponctuelle :</strong><br>
+                                f = 240 / 400 = <strong>0.60 (soit 60%)</strong>. Donc p̂ = 0.60.</p>
+                                <p><strong>2. Intervalle de Confiance à 95% :</strong><br>
+                                Marge d'erreur = z × √[f(1-f)/n] = 1.96 × √[(0.60 × 0.40) / 400] = 1.96 × 0.0245 = <strong>0.048</strong><br>
+                                IC = [0.60 - 0.048 ; 0.60 + 0.048] = <strong>[0.552 ; 0.648]</strong></p>
+                                <p>Le candidat obtiendra entre 55.2% et 64.8% des voix avec un niveau de confiance de 95%.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center">
+                        <h3 class="font-bold text-lg">Exercice 3 : Loi de Student (Petit Échantillon Brut)</h3>
+                        <span class="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded">Difficile</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4 bg-slate-50 p-4 rounded-lg border-l-4 border-slate-400 text-sm italic">
+                            Un échantillon de n = 5 pièces donne les durées de fonctionnement suivantes en heures : 1200, 1220, 1170, 1210, 1200.<br>
+                            Déterminer l'intervalle de confiance pour la moyenne réelle μ à un niveau de confiance de 99% (t_<sub>critique</sub> pour ddl=4 à 99% est 4.604).
+                        </div>
+                        <details class="group border border-slate-200 rounded-lg">
+                            <summary class="w-full text-left font-semibold text-sm p-3 bg-slate-100 hover:bg-slate-200 cursor-pointer text-indigo-700 flex justify-between items-center">
+                                <span>Afficher la Solution Détaillée</span>
+                                <span class="transition group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 text-sm text-slate-700 space-y-3 font-mono leading-relaxed bg-white">
+                                <p><strong>1. Calcul de la moyenne de l'échantillon (X̄) :</strong><br>
+                                X̄ = (1200 + 1220 + 1170 + 1210 + 1200) / 5 = 6000 / 5 = <strong>1200 heures</strong></p>
+                                <p><strong>2. Calcul de la variance corrigée (s²) et de l'écart-type (s) :</strong><br>
+                                Somme des carrés des écarts : (0)² + (20)² + (-30)² + (10)² + (0)² = 0 + 400 + 900 + 100 + 0 = 1400<br>
+                                s² = 1400 / (5 - 1) = 1400 / 4 = 350<br>
+                                s = √350 = <strong>18.71</strong></p>
+                                <p><strong>3. Application de l'IC de Student (n < 30 et σ inconnu) :</strong><br>
+                                Marge d'erreur = t × (s / √n) = 4.604 × (18.71 / √5) = 4.604 × 8.368 = <strong>38.53</strong><br>
+                                IC = [1200 - 38.53 ; 1200 + 38.53] = <strong>[1161.47 ; 1238.53]</strong></p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center">
+                        <h3 class="font-bold text-lg">Exercice 4 : Taille Minimale d'Échantillon</h3>
+                        <span class="px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded">Intermédiaire</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4 bg-slate-50 p-4 rounded-lg border-l-4 border-slate-400 text-sm italic">
+                            Un ingénieur souhaite estimer la durée de vie moyenne d'une batterie. Des études précédentes indiquent un écart-type σ = 4 heures. <br>
+                            Quelle doit être la taille minimale de l'échantillon pour que la marge d'erreur ne dépasse pas 0.5 heure avec un niveau de confiance de 95% (z = 1.96) ?
+                        </div>
+                        <details class="group border border-slate-200 rounded-lg">
+                            <summary class="w-full text-left font-semibold text-sm p-3 bg-slate-100 hover:bg-slate-200 cursor-pointer text-indigo-700 flex justify-between items-center">
+                                <span>Afficher la Solution Détaillée</span>
+                                <span class="transition group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 text-sm text-slate-700 space-y-3 font-mono leading-relaxed bg-white">
+                                <p><strong>1. Formule de la taille d'échantillon :</strong><br>
+                                E = z × (σ / √n) → √n = (z × σ) / E → <strong>n = [ (z × σ) / E ]²</strong></p>
+                                <p><strong>2. Application numérique :</strong><br>
+                                n = [ (1.96 × 4) / 0.5 ]² = [ 7.84 / 0.5 ]² = (15.68)² = <strong>245.86</strong></p>
+                                <p><strong>3. Conclusion :</strong><br>
+                                On arrondit toujours à l'entier supérieur pour garantir la précision voulue. Donc <strong>n = 246 batteries</strong>.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md border-2 border-indigo-500 overflow-hidden">
+                    <div class="bg-gradient-to-r from-indigo-700 to-blue-800 text-white px-6 py-4 flex justify-between items-center">
+                        <h3 class="font-bold text-xl">🔥 Exercice Complet de Synthèse (Type Examen)</h3>
+                        <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full uppercase">Examen Blanc</span>
+                    </div>
+                    <div class="p-6 bg-indigo-50/30">
+                        <div class="mb-6 bg-white p-5 rounded-xl shadow-sm border border-slate-200 text-sm leading-relaxed text-slate-700 space-y-4">
+                            <p class="font-bold border-b pb-1 text-indigo-800">Partie A : Étude de la Population (Loi Normale)</p>
+                            <p class="italic pl-2 border-l-2 border-slate-300">Le poids X d'un paquet de café produit par une machine originale suit une loi normale de moyenne μ = 250 g et d'écart-type σ = 5 g.<br>
+                            1. Calculer la probabilité qu'un paquet pèse moins de 242 g. (Donnée : Π(1.6) = 0.9452)<br>
+                            2. Calculer la probabilité qu'un paquet pèse entre 245 g et 255 g. (Donnée : Π(1) = 0.8413)</p>
+
+                            <p class="font-bold border-b pb-1 text-indigo-800">Partie B : Échantillonnage</p>
+                            <p class="italic pl-2 border-l-2 border-slate-300">On prélève au hasard un échantillon de n = 100 paquets (tirage avec remise).<br>
+                            1. Quelle est la loi de probabilité suivie par la moyenne X̄ ? Préciser ses paramètres.<br>
+                            2. Calculer la probabilité que la moyenne soit supérieure à 251 g. (Donnée : Π(2) = 0.9772)</p>
+
+                            <p class="font-bold border-b pb-1 text-indigo-800">Partie C : Estimation & Loi de Student</p>
+                            <p class="italic pl-2 border-l-2 border-slate-300">Une nouvelle machine inconnue est introduite. On prélève n = 25 paquets, on obtient : X̄ = 248 g et une variance non-corrigée σ²_<sub>éch</sub> = 15.36 g².<br>
+                            1. Donner l'estimation ponctuelle de la variance de la population.<br>
+                            2. Trouver l'IC du poids moyen réel à 95% (t_<sub>critique</sub> pour ddl=24 à 95% est 2.064).</p>
+                        </div>
+                        
+                        <details class="group border-2 border-indigo-200 rounded-xl bg-white">
+                            <summary class="w-full text-left font-bold text-sm p-4 hover:bg-indigo-50 cursor-pointer text-indigo-800 flex justify-between items-center">
+                                <span>📂 VOIR LE CORRIGÉ INTÉGRAL ET NOTÉ</span>
+                                <span class="transition group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="p-6 border-t border-indigo-100 text-sm text-slate-700 space-y-6 font-mono bg-slate-50/50">
+                                <div>
+                                    <h4 class="font-bold text-indigo-900 border-b pb-1">Correction Partie A :</h4>
+                                    <p class="mt-2">1. P(X < 242) → Z = (242-250)/5 = -1.6<br>P(Z < -1.6) = 1 - Π(1.6) = 1 - 0.9452 = <strong>0.0548 (5.48%)</strong></p>
+                                    <p class="mt-2">2. P(245 < X < 255) → Z1 = (245-250)/5 = -1 et Z2 = (255-250)/5 = 1<br>P(-1 < Z < 1) = 2Π(1) - 1 = 2(0.8413) - 1 = <strong>0.6826 (68.26%)</strong></p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-indigo-900 border-b pb-1">Correction Partie B :</h4>
+                                    <p class="mt-2">1. Loi de la moyenne : X̄ suit une loi normale car la population initiale est normale.<br>Paramètres : E(X̄) = μ = 250 ; σ_X̄ = σ / √n = 5 / √100 = 0.5 → <strong>X̄ ~ N(250 ; 0.5)</strong></p>
+                                    <p class="mt-2">2. P(X̄ > 251) → Z = (251-250)/0.5 = 2<br>P(Z > 2) = 1 - Π(2) = 1 - 0.9772 = <strong>0.0228 (2.28%)</strong></p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-indigo-900 border-b pb-1">Correction Partie C :</h4>
+                                    <p class="mt-2">1. Estimation ponctuelle de la variance (corrigée) :<br>s² = [n/(n-1)] × σ²_éch = (25/24) × 15.36 = <strong>16 g²</strong>. (L'écart-type s vaut donc √16 = 4 g).</p>
+                                    <p class="mt-2">2. IC à 95% (n < 30, σ inconnu → Student ddl=24) :<br>Marge d'erreur = t × (s / √n) = 2.064 × (4 / √25) = 2.064 × 0.8 = <strong>1.6512 g</strong><br>IC = [248 - 1.6512 ; 248 + 1.6512] = <strong>[246.35 g ; 249.65 g]</strong></p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 text-center py-6 mt-16 border-t border-slate-700 text-xs tracking-wider">
+        Dashboard de Révision Statistique Inférentielle • Conçu pour une maîtrise parfaite du module.
+    </footer>
+
+</body>
+</html>
